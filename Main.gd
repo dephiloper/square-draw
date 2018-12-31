@@ -9,10 +9,12 @@ func _ready():
 func _input(event):
 	if event is InputEventKey:
 		if event.scancode == KEY_C:
-			$Grid.rects.clear()
+			$Grid.clear_cells()
 			$Grid.update()
 		if event.scancode == KEY_0:
 			$Camera2D.zoom = Vector2(1, 1)
+		if event.scancode == KEY_ESCAPE:
+			get_tree().quit()
 			
 func _process(delta):
 	if Input.is_action_pressed("zoom_in"):

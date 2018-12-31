@@ -1,5 +1,7 @@
 extends Node2D
 
+var zoom = 1.0
+
 func _ready():
 	$Grid.position.x -= int($Grid.draw_size.x * $Grid.cell_dim.x / 2)
 	$Grid.position.y -= int($Grid.draw_size.y * $Grid.cell_dim.y / 2)
@@ -9,9 +11,22 @@ func _input(event):
 		if event.scancode == KEY_C:
 			$Grid.rects.clear()
 			$Grid.update()
-		if event.scancode == KEY_PLUS:
-			$Camera2D.zoom -= Vector2(0.1, 0.1)
-		if event.scancode == KEY_MINUS:
-			$Camera2D.zoom += Vector2(0.1, 0.1)
 		if event.scancode == KEY_0:
 			$Camera2D.zoom = Vector2(1, 1)
+			
+func _process(delta):
+	if Input.is_action_pressed("zoom_in"):
+		zoom -= delta
+	elif Input.is_action_pressed("zoom_out"):
+		zoom += delta
+	if Input.is_action_pressed("ui_left"):
+		$Camera2D.offset.x += delta * 100
+	if Input.is_action_pressed("ui_right"):
+		$Camera2D.offset.x -= delta * 100
+	if Input.is_action_pressed("ui_up"):
+		$Camera2D.offset.y += delta * 100
+	if Input.is_action_pressed("ui_down"):
+		$Camera2D.offset.y -= delta * 100
+	
+	zoom = clamp(zoom, 0.5, 2.0)
+	$Camera2D.zoom = Vector2.ONE * zoom

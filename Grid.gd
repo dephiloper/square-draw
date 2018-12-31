@@ -1,7 +1,7 @@
 extends Node2D
 
-export(Vector2) var draw_size = Vector2(10, 10)
-var cell_dim = Vector2(32,32)
+export(Vector2) var draw_size = Vector2(64, 64)
+var cell_dim = Vector2(16,16)
 var rects = []
 var pressed
 

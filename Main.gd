@@ -3,8 +3,8 @@ extends Node2D
 var zoom = 1.0
 
 func _ready():
-	$Grid.position.x -= int($Grid.draw_size.x * $Grid.cell_dim.x / 2)
-	$Grid.position.y -= int($Grid.draw_size.y * $Grid.cell_dim.y / 2)
+	$Grid.position.x -= int($Grid.grid_size.x * $Grid.cell_dim.x / 2)
+	$Grid.position.y -= int($Grid.grid_size.y * $Grid.cell_dim.y / 2)
 	
 func _input(event):
 	if event is InputEventKey:

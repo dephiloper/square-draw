@@ -9,13 +9,13 @@ func _ready():
 	image.load("hollow-knight.png")
 	image.lock()
 	var grid = get_parent().get_node("Grid")
+	colors.append(transparent);
 	
-	print(image.get_height() * image.get_width())
 	for x in range(image.get_height()):
 		for y in range(image.get_width()):
 			var color = find_close_color(image.get_pixel(x,y))
 			var cell = grid.cell_at(x,y)
-			cell.color = color				
+			cell.color = color
 			#grid.cell_at(x,y).colored = true
 			if colors.find(color) == -1:
 				colors.append(color)
